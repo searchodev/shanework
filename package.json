@@ -1,0 +1,11 @@
+{
+    "name": "scrapper",
+    "version": "0.0.1",
+    "description": "Web scrapper for grabbing data from the web.",
+    "main": "app.js",
+    "author": "Shane Ramiah",
+    "dependencies": {
+        "x-ray": "latest",
+        "mysql": "latest"
+    }
+}

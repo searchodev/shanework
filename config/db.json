@@ -1,0 +1,5 @@
+{
+    "host": "example.org",
+    "user": "bob",
+    "password": "secret"
+}

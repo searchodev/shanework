@@ -1,0 +1,16 @@
+{
+    "fabfurnish": {
+        "list": "li.itm",
+        "name": ".itmTitleCont",
+        "image": ".itm-img[src]@src",
+        "price": ".itm-priceSpecial",
+        "link": ".itm-link[href]@href"
+    },
+    "homeshop18": {
+        "list": "table.flexGrid > tbody > tr > td",
+        "name": ".mar-l-12 > a",
+        "image": ".mar-l-12 > a",
+        "price": ".mar-l-12 > a",
+        "link": ".mar-l-12 > a"
+    }
+}
