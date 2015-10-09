@@ -4,13 +4,16 @@
 Scrapper is based on Node.js and can easily be configured to scrapped for website by editing configuration file.
 ### Installation
 
-Clone the repository from GitHub
+1. Make sure you have Node.js and NPM installed. [See] instructions on how to install on Windows.
+
+2. Clone the repository from GitHub
 ```sh
 $ git clone https://github.com/searchodev/shanework scrapper
 ```
-Install the Node modules
+3. Go to the directory where you clone the repository and Install the Node modules
 
 ```sh
+$ cd scrapper
 $ npm install
 ```
 
@@ -24,6 +27,7 @@ Three configuration files can be modified under ``conf/`` directory.
 
 
    [CSS Selector]: <http://www.w3schools.com/cssref/css_selectors.asp>
+   [See]: <http://blog.teamtreehouse.com/install-node-js-npm-windows>
 
 
 ### Running the Application
