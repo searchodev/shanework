@@ -20,10 +20,28 @@
     "ebay": {
         "list": ".itm",
         "name": ".itemttl > a",
-        "image": ".imgt > a > img[src]@src",
-        "price": ".discount",
+        "image": ".pu-image[src]@src",
+        "price": ".pu-final > span",
         "link": ".itemttl > a[href]@href",
         "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/fabfurnish_logo.png",
         "brand": "ebay"
+    },
+    "flipkart": {
+        "list": ".product-unit",
+        "name": ".pu-title > a[title]@title",
+        "image": ".pu-image > img[src]@src",
+        "price": ".pu-final > span",
+        "link": ".pu-title > a[href]@href",
+        "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/fabfurnish_logo.png",
+        "brand": "flipkart"
+    },
+    "ezoneonline": {
+        "list": ".section-separator > li",
+        "name": ".setHeight > a[title]@title",
+        "image": ".pro-thumb > a > img[src]@src",
+        "price": ".price",
+        "link": ".setHeight > a[href]@href",
+        "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/fabfurnish_logo.png",
+        "brand": "ezoneonline"
     }
 }

@@ -1,97 +1,110 @@
-    {
-        "url": "http://www.homeshop18.com/mobiles/category:3024/?it_category=MN&it_action=MA-AAMNTL&it_label=MN-AAMNTL-130822115933-PD-MA-RM-OT-CA_Mobiles&it_value=0",
-        "category": 33,
-        "tag": 3333,
-        "scrapper": "homeshop18"
-    },
-    // Fabfurnish
-
-    {
-        "url": "http://www.fabfurnish.com/furniture/sofas-sectionals/",
-        "category": 33,
-        "tag": 1321,
-        "scrapper": "fabfurnish"
-    }, {
-        "url": "http://www.fabfurnish.com/furniture/loungers/",
-        "category": 33,
-        "tag": 1322,
-        "scrapper": "fabfurnish"
-    }, {
-        "url": "http://www.fabfurnish.com/furniture/wooden-sofa-sets/",
-        "category": 33,
-        "tag": 1323,
-        "scrapper": "fabfurnish"
-    }, {
-        "url": "http://www.fabfurnish.com/furniture/sofa-beds/",
-        "category": 33,
-        "tag": 1324,
-        "scrapper": "fabfurnish"
-    }, {
-        "url": "http://www.fabfurnish.com/furniture/recliners/",
-        "category": 33,
-        "tag": 1325,
-        "scrapper": "fabfurnish"
-    }, {
-        "url": "http://www.fabfurnish.com/furniture/chairs/",
-        "category": 33,
-        "tag": 1326,
-        "scrapper": "fabfurnish"
-    }, {
-        "url": "http://www.fabfurnish.com/furniture/wing-chairs/",
-        "category": 33,
-        "tag": 1327,
-        "scrapper": "fabfurnish"
-    }, {
-        "url": "http://www.fabfurnish.com/furniture/rocking-chairs/",
-        "category": 33,
-        "tag": 1328,
-        "scrapper": "fabfurnish"
-    }, {
-        "url": "http://www.fabfurnish.com/furniture/ottomans-benches-stools/",
-        "category": 33,
-        "tag": 1329,
-        "scrapper": "fabfurnish"
-    }, {
-        "url": "http://www.fabfurnish.com/furniture/coffee-tables/",
-        "category": 33,
-        "tag": 1330,
-        "scrapper": "fabfurnish"
-    }, {
-        "url": "http://www.fabfurnish.com/furniture/side-tables/",
-        "category": 33,
-        "tag": 1331,
-        "scrapper": "fabfurnish"
-    }, {
-        "url": "http://www.fabfurnish.com/furniture/entertainment-tv-units/",
-        "category": 33,
-        "tag": 1332,
-        "scrapper": "fabfurnish"
-    }, {
-        "url": "http://www.fabfurnish.com/furniture/bookshelves/",
-        "category": 33,
-        "tag": 1333,
-        "scrapper": "fabfurnish"
-    }, {
-        "url": "http://www.fabfurnish.com/furniture/magazine-racks/",
-        "category": 33,
-        "tag": 1334,
-        "scrapper": "fabfurnish"
-    }, {
-        "url": "http://www.fabfurnish.com/furniture/console-tables/",
-        "category": 33,
-        "tag": 1335,
-        "scrapper": "fabfurnish"
-    }, {
-        "url": "http://www.fabfurnish.com/furniture/lobby-set/",
-        "category": 33,
-        "tag": 1336,
-        "scrapper": "fabfurnish"
-    },
-    // Ebay
-
-    {
-        "url": "http://www.ebay.in/cat/mobiles/budgetMobiles",
-        "category": 33,
-        "tag": 3333,
-        "scrapper": "ebay"
-    }
+// flipkart
+{
+    "url": "http://www.flipkart.com/furniture/living-room/recliners/pr?sid=anx%2C70t%2C0nn&filterNone=true&otracker=hp_nmenu_sub_home-kitchen_0_Recliners",
+    "category": 0,
+    "tag": 0,
+    "scrapper": "flipkart"
+},
+//ezoneonline
+{
+    "url": "http://www.ezoneonline.in/Categories/Phones/Mobile-Phones/c/mobilephones?sort=newest&q=%3Aproduct-boost#",
+    "category": 0,
+    "tag": 0,
+    "scrapper": "ezoneonline"
+},
+// homeshop18
+{
+    "url": "http://www.homeshop18.com/mobiles/category:3024/?it_category=MN&it_action=MA-AAMNTL&it_label=MN-AAMNTL-130822115933-PD-MA-RM-OT-CA_Mobiles&it_value=0",
+    "category": 0,
+    "tag": 0,
+    "scrapper": "homeshop18"
+},
+// Fabfurnish
+{
+    "url": "http://www.fabfurnish.com/furniture/sofas-sectionals/",
+    "category": 33,
+    "tag": 1321,
+    "scrapper": "fabfurnish"
+}, {
+    "url": "http://www.fabfurnish.com/furniture/loungers/",
+    "category": 33,
+    "tag": 1322,
+    "scrapper": "fabfurnish"
+}, {
+    "url": "http://www.fabfurnish.com/furniture/wooden-sofa-sets/",
+    "category": 33,
+    "tag": 1323,
+    "scrapper": "fabfurnish"
+}, {
+    "url": "http://www.fabfurnish.com/furniture/sofa-beds/",
+    "category": 33,
+    "tag": 1324,
+    "scrapper": "fabfurnish"
+}, {
+    "url": "http://www.fabfurnish.com/furniture/recliners/",
+    "category": 33,
+    "tag": 1325,
+    "scrapper": "fabfurnish"
+}, {
+    "url": "http://www.fabfurnish.com/furniture/chairs/",
+    "category": 33,
+    "tag": 1326,
+    "scrapper": "fabfurnish"
+}, {
+    "url": "http://www.fabfurnish.com/furniture/wing-chairs/",
+    "category": 33,
+    "tag": 1327,
+    "scrapper": "fabfurnish"
+}, {
+    "url": "http://www.fabfurnish.com/furniture/rocking-chairs/",
+    "category": 33,
+    "tag": 1328,
+    "scrapper": "fabfurnish"
+}, {
+    "url": "http://www.fabfurnish.com/furniture/ottomans-benches-stools/",
+    "category": 33,
+    "tag": 1329,
+    "scrapper": "fabfurnish"
+}, {
+    "url": "http://www.fabfurnish.com/furniture/coffee-tables/",
+    "category": 33,
+    "tag": 1330,
+    "scrapper": "fabfurnish"
+}, {
+    "url": "http://www.fabfurnish.com/furniture/side-tables/",
+    "category": 33,
+    "tag": 1331,
+    "scrapper": "fabfurnish"
+}, {
+    "url": "http://www.fabfurnish.com/furniture/entertainment-tv-units/",
+    "category": 33,
+    "tag": 1332,
+    "scrapper": "fabfurnish"
+}, {
+    "url": "http://www.fabfurnish.com/furniture/bookshelves/",
+    "category": 33,
+    "tag": 1333,
+    "scrapper": "fabfurnish"
+}, {
+    "url": "http://www.fabfurnish.com/furniture/magazine-racks/",
+    "category": 33,
+    "tag": 1334,
+    "scrapper": "fabfurnish"
+}, {
+    "url": "http://www.fabfurnish.com/furniture/console-tables/",
+    "category": 33,
+    "tag": 1335,
+    "scrapper": "fabfurnish"
+}, {
+    "url": "http://www.fabfurnish.com/furniture/lobby-set/",
+    "category": 33,
+    "tag": 1336,
+    "scrapper": "fabfurnish"
+},
+// Ebay
+{
+    "url": "http://www.ebay.in/cat/mobiles/budgetMobiles",
+    "category": 0,
+    "tag": 0,
+    "scrapper": "ebay"
+}

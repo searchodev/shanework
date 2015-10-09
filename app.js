@@ -49,6 +49,7 @@ sources.forEach(function (source, index) {
         if (err) console.log(err);
         if (output !== 'undefined') {
             insert(output, category, logo, brand);
+            console.log("Scrapping done.");
         }
     })
 
@@ -56,7 +57,6 @@ sources.forEach(function (source, index) {
 });
 
 function insert(records, category, logo, brand) {
-
     var values = [];
     records.forEach(function (element, index) {
         values.push([1, logo, util.clean(element.name), '', category, brand, util.extractNumber(element.price), util.clean(element.image), util.clean(element.link), '', '']);
