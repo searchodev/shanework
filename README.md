@@ -7,9 +7,9 @@ Scrapper is based on Node.js and can easily be configured to scrapped for websit
 1. Make sure you have Node.js and NPM installed. [See] instructions on how to install on Windows.
 
 2. Clone the repository from GitHub
-```sh
-$ git clone https://github.com/searchodev/shanework scrapper
-```
+  ```sh
+  $ git clone https://github.com/searchodev/shanework scrapper
+  ```
 3. Go to the directory where you clone the repository and Install the Node modules
 
 ```sh
