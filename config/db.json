@@ -1,5 +1,7 @@
 {
-    "host": "example.org",
-    "user": "bob",
-    "password": "secret"
+    "host": "localhost",
+    "user": "root",
+    "password": "",
+    "database": "scrapper",
+    "connectionLimit": 10
 }

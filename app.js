@@ -25,6 +25,11 @@ var scrappers = JSON.parse(fs.readFileSync(configDir + '/scrappers.json', 'utf8'
 
 // MySQL connection
 var connection = mysql.createConnection(db);
+
+
+var mysql = require('mysql');
+var pool = mysql.createPool(db);
+
 // Creating an instance of the scrapper
 var parser = xray();
 
@@ -32,6 +37,8 @@ var parser = xray();
 sources.forEach(function (source, index) {
     scrapper = scrappers[source.scrapper]
     var category = source.category;
+    var logo = scrapper.logo;
+    var brand = scrapper.brand;
     console.log("Scrapping: " + source.url);
     parser(source.url, scrapper.list, [{
         name: scrapper.name,
@@ -39,19 +46,28 @@ sources.forEach(function (source, index) {
         price: scrapper.price,
         link: scrapper.link
             }])(function (err, output) {
-        console.log(output);
-        output.forEach(function (element, index) {
-            console.log({
-                name: util.clean(element.name),
-                image: util.clean(element.image),
-                price: util.extractNumber(element.price),
-                link: util.clean(element.link),
-                category: category
-            });
-
-        }).limit(3);
-
+        if (err) console.log(err);
+        if (output !== 'undefined') {
+            insert(output, category, logo, brand);
+        }
     })
 
 
 });
+
+function insert(records, category, logo, brand) {
+
+    var values = [];
+    records.forEach(function (element, index) {
+        values.push([1, logo, util.clean(element.name), '', category, brand, util.extractNumber(element.price), util.clean(element.image), util.clean(element.link), '', '']);
+    });
+
+
+    pool.getConnection(function (err, connection) {
+        var sql = "INSERT INTO products (m_id, m_logo, name, description, category, brand, price, image, url, size, color) VALUES ?";
+        connection.query(sql, [values], function (err) {
+            if (err) console.log(err);
+            connection.release();
+        });
+    });
+}

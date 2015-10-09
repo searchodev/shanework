@@ -4,13 +4,26 @@
         "name": ".itmTitleCont",
         "image": ".itm-img[src]@src",
         "price": ".itm-priceSpecial",
-        "link": ".itm-link[href]@href"
+        "link": ".itm-link[href]@href",
+        "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/fabfurnish_logo.png",
+        "bramd": "fabfurnish"
     },
     "homeshop18": {
-        "list": "table.flexGrid > tbody > tr > td",
-        "name": ".mar-l-12 > a",
-        "image": ".mar-l-12 > a",
-        "price": ".mar-l-12 > a",
-        "link": ".mar-l-12 > a"
+        "list": "td",
+        "name": "a[title]@title",
+        "image": "a > img[src]@src",
+        "price": ".price",
+        "link": "a[href]@href",
+        "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/fabfurnish_logo.png",
+        "brand": "homeshop18"
+    },
+    "ebay": {
+        "list": ".itm",
+        "name": ".itemttl > a",
+        "image": ".imgt > a > img[src]@src",
+        "price": ".discount",
+        "link": ".itemttl > a[href]@href",
+        "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/fabfurnish_logo.png",
+        "brand": "ebay"
     }
 }

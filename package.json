@@ -1,11 +1,16 @@
 {
     "name": "scrapper",
-    "version": "0.0.1",
+    "version": "1.0.0",
+    "private": true,
     "description": "Web scrapper for grabbing data from the web.",
     "main": "app.js",
     "author": "Shane Ramiah",
     "dependencies": {
         "x-ray": "latest",
-        "mysql": "latest"
-    }
+        "mysql": "latest",
+        "mysql-utilities": "latest"
+    },
+
+    "license": "UNLICENSED",
+    "repository": "https://github.com/searchodev/shanework"
 }
