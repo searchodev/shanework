@@ -12,14 +12,14 @@ Scrapper is based on Node.js and can easily be configured to scrapped for websit
   ```
 3. Go to the directory where you clone the repository and Install the Node modules
 
-```sh
-$ cd scrapper
-$ npm install
-```
+  ```sh
+  $ cd scrapper
+  $ npm install
+  ```
 
 ### Configuration
 
-Three configuration files can be modified under ``conf/`` directory.
+Three configuration files can be modified under ``conf`` directory.
 
   - ``db.json`` which holds the database connection info.
   - ``scrapper.json`` used to configure the scrapper using [CSS Selector].
