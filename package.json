@@ -8,7 +8,8 @@
     "dependencies": {
         "x-ray": "latest",
         "mysql": "latest",
-        "mysql-utilities": "latest"
+        "mysql-utilities": "latest",
+        "async": "latest"
     },
 
     "license": "UNLICENSED",

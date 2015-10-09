@@ -10,6 +10,7 @@ var fs = require('fs');
 var path = require('path');
 var xray = require('x-ray');
 var mysql = require('mysql');
+var async = require("async");
 
 // Custom Module dependency
 var util = require('./lib/util.js');
@@ -34,7 +35,7 @@ var pool = mysql.createPool(db);
 var parser = xray();
 
 
-sources.forEach(function (source, index) {
+async.eachSeries(sources, function (source, callback) {
     scrapper = scrappers[source.scrapper]
     var category = source.category;
     var logo = scrapper.logo;
@@ -49,7 +50,8 @@ sources.forEach(function (source, index) {
         if (err) console.log(err);
         if (output !== 'undefined') {
             insert(output, category, logo, brand);
-            console.log("Scrapping done.");
+            console.log("Scrapping done - " + output.length + " records found");
+            callback(null)
         }
     })
 
@@ -58,16 +60,22 @@ sources.forEach(function (source, index) {
 
 function insert(records, category, logo, brand) {
     var values = [];
-    records.forEach(function (element, index) {
-        values.push([1, logo, util.clean(element.name), '', category, brand, util.extractNumber(element.price), util.clean(element.image), util.clean(element.link), '', '']);
-    });
-
-
-    pool.getConnection(function (err, connection) {
-        var sql = "INSERT INTO products (m_id, m_logo, name, description, category, brand, price, image, url, size, color) VALUES ?";
-        connection.query(sql, [values], function (err) {
-            if (err) console.log(err);
-            connection.release();
+    try {
+        records.forEach(function (element, index) {
+            values.push([1, logo, util.clean(element.name), '', category, brand, util.extractNumber(element.price), util.clean(element.image), util.clean(element.link), '', '']);
         });
-    });
+
+        if (values.length > 0) {
+            pool.getConnection(function (err, connection) {
+                var sql = "INSERT INTO products (m_id, m_logo, name, description, category, brand, price, image, url, size, color) VALUES ?";
+                connection.query(sql, [values], function (err) {
+                    if (err);
+                    connection.release();
+                });
+            });
+        }
+    } catch (e) {
+
+    }
+
 }
