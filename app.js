@@ -32,7 +32,7 @@ var mysql = require('mysql');
 var pool = mysql.createPool(db);
 
 // Creating an instance of the scrapper
-var parser = xray().timeout(300000).limit(5);
+var parser = xray().timeout(300000);
 
 
 async.eachSeries(sources, function (source, callback) {
