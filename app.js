@@ -32,7 +32,7 @@ var mysql = require('mysql');
 var pool = mysql.createPool(db);
 
 // Creating an instance of the scrapper
-var parser = xray();
+var parser = xray().timeout(300000).limit(5);
 
 
 async.eachSeries(sources, function (source, callback) {
@@ -48,10 +48,12 @@ async.eachSeries(sources, function (source, callback) {
         link: scrapper.link
             }])(function (err, output) {
         if (err) console.log(err);
-        if (output !== 'undefined') {
+        if (typeof output !== 'undefined') {
             insert(output, category, logo, brand);
-            console.log("Scrapping done - " + output.length + " records found");
+            console.log("Scrapping done: " + output.length + " records found");
             callback(null)
+        } else {
+            console.log("Could not scrape webpage. Webpage might be unvailable or taking too long to respond.");
         }
     })
 
