@@ -3,7 +3,7 @@
         "list": "li.itm",
         "name": ".itmTitleCont",
         "image": ".itm-img[src]@src",
-        "price": ".itm-priceSpecial",
+        "price": ".itm-price",
         "link": ".itm-link[href]@href",
         "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/fabfurnish_logo.png",
         "bramd": "fabfurnish"
