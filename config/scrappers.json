@@ -6,7 +6,7 @@
         "price": ".itm-price",
         "link": ".itm-link[href]@href",
         "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/fabfurnish_logo.png",
-        "bramd": "fabfurnish"
+        "brand": "fabfurnish"
     },
     "homeshop18": {
         "list": "td",
@@ -43,5 +43,14 @@
         "link": ".setHeight > a[href]@href",
         "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/fabfurnish_logo.png",
         "brand": "ezoneonline"
+    },
+    "caratlane": {
+        "list": ".item",
+        "name": ".product_name > a",
+        "image": ".product_image_container > a > img[src]@src",
+        "price": ".regular_price",
+        "link": ".product_image_container > a[href]@href",
+        "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/fabfurnish_logo.png",
+        "brand": "caratlane"
     }
 }
