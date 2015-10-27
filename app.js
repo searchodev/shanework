@@ -45,13 +45,14 @@ async.eachSeries(sources, function (source, callback) {
     var logo = scrapper.logo;
     var brand = scrapper.brand;
 
-    console.log("Scrapping: " + source.url);
+
 
     if (scrapper.isJson) {
         request(source.url.replace('{{page}}', 1), function (err, response, data) {
             if (!err) {
                 var js = JSON.parse(data);
                 var total = js.list.products_total;
+                console.log("Scrapping: " + source.url);
                 console.log("Total products found: " + total);
                 for (var i = 0; i < total / 30; i++) {
                     scrapeJson(source.url, (i + 1), scrapper.baseurl, category, logo, brand);
@@ -121,6 +122,7 @@ function insert(records, category, logo, brand) {
         });
 
         if (values.length > 0) {
+            console.log("Inserting: " + values.length + " Records");
             pool.getConnection(function (err, connection) {
                 var sql = "INSERT INTO products (m_id, m_logo, name, description, category, brand, price, image, url, size, color) VALUES ? ON DUPLICATE KEY UPDATE m_id=m_id, m_logo=m_logo, name=name, description=description, category=category, brand=brand, price=price, image=image, size=size, color=color ";
                 connection.query(sql, [values], function (err) {
