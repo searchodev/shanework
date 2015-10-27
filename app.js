@@ -56,8 +56,10 @@ async.eachSeries(sources, function (source, callback) {
                 for (var i = 0; i < total / 30; i++) {
                     scrapeJson(source.url, (i + 1), scrapper.baseurl, category, logo, brand);
                 }
+                callback(null);
             }
-        })
+        });
+
 
     } else {
         parser(source.url, scrapper.list, [{
