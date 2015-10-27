@@ -9,7 +9,8 @@
         "x-ray": "latest",
         "mysql": "latest",
         "mysql-utilities": "latest",
-        "async": "latest"
+        "async": "latest",
+        "request": "latest"
     },
 
     "license": "UNLICENSED",

@@ -1,0 +1,33 @@
+[
+    {
+        "url": "https://www.caratlane.com/v5/listing/view?safepage={{page}}&sort=&url=rings-jewellery",
+        "category": 1111,
+        "scrapper": "caratlane"
+    },
+    {
+        "url": "https://www.caratlane.com/v5/listing/view?safepage={{page}}&sort=&url=chains-jewellery",
+        "category": 1111,
+        "scrapper": "caratlane"
+    }
+, {
+        "url": "https://www.caratlane.com/v5/listing/view?safepage={{page}}&sort=&url=earrings-jewellery",
+        "category": 1111,
+        "scrapper": "caratlane"
+    },
+    {
+        "url": "https://www.caratlane.com/v5/listing/view?safepage={{page}}&sort=&url=pendants-jewellery",
+        "category": 1111,
+        "scrapper": "caratlane"
+    }
+    , {
+        "url": "https://www.caratlane.com/v5/listing/view?safepage={{page}}&sort=&url=chains-necklaces-jewellery",
+        "category": 1111,
+        "scrapper": "caratlane"
+    }
+    , {
+        "url": "https://www.caratlane.com/v5/listing/view?safepage={{page}}&sort=&url=bangles-bracelets-jewellery",
+        "category": 1111,
+        "scrapper": "caratlane"
+    }
+
+]

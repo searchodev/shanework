@@ -45,6 +45,8 @@
         "brand": "ezoneonline"
     },
     "caratlane": {
+        "isJson": true,
+        "baseurl": "http://www.caratlane.com",
         "list": ".item",
         "name": ".product_name > a",
         "image": ".product_image_container > a > img[src]@src",
