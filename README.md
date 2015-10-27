@@ -19,11 +19,12 @@ Scrapper is based on Node.js and can easily be configured to scrapped for websit
 
 ### Configuration
 
-Three configuration files can be modified under ``conf`` directory.
+Two configuration files can be modified under ``conf`` directory.
 
   - ``db.json`` which holds the database connection info.
-  - ``scrapper.json`` used to configure the scrapper using [CSS Selector].
-  - ``sources.json`` all the web sources which need to be scrapped.
+  - ``scrapper.json`` used to configure the scrapper using [CSS Selector] or specified as JSON.
+ 
+Under ``conf\sources`` directory you need to add your sources configuration together with their category mapping.
 
 
    [CSS Selector]: <http://www.w3schools.com/cssref/css_selectors.asp>
@@ -32,4 +33,4 @@ Three configuration files can be modified under ``conf`` directory.
 
 ### Running the Application
 
-Run ``node app.js`` on your terminal.
+Run ``node app.js <source> `` on your terminal.
