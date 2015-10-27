@@ -125,10 +125,12 @@ function insert(records, category, logo, brand) {
             console.log("Inserting: " + values.length + " Records");
             pool.getConnection(function (err, connection) {
                 var sql = "INSERT INTO products (m_id, m_logo, name, description, category, brand, price, image, url, size, color) VALUES ? ON DUPLICATE KEY UPDATE m_id=m_id, m_logo=m_logo, name=name, description=description, category=category, brand=brand, price=price, image=image, size=size, color=color ";
-                connection.query(sql, [values], function (err) {
-                    if (err);
-                    connection.release();
-                });
+                if (typeof connection != 'undefined') {
+                    connection.query(sql, [values], function (err) {
+                        if (err);
+                        connection.release();
+                    });
+                }
             });
         }
     } catch (e) {
