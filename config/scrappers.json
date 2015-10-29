@@ -8,6 +8,16 @@
         "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/fabfurnish_logo.png",
         "brand": "fabfurnish"
     },
+    "fabfurnishmobile": {
+        "list": ".pro-content",
+        "name": ".itm-imageWrapper[title]@title",
+        "image": ".itm-img[src]@src",
+        "price": ".itm-price",
+        "link": "   a[href]@href",
+        "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/fabfurnish_logo.png",
+        "brand": "fabfurnish",
+        "isMobile": true
+    },
     "homeshop18": {
         "list": "td",
         "name": "a[title]@title",

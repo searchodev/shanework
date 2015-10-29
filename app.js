@@ -44,6 +44,7 @@ async.eachSeries(sources, function (source, callback) {
     var category = source.category;
     var logo = scrapper.logo;
     var brand = scrapper.brand;
+    var isMobile = scrapper.isMobile || false;
 
 
 
@@ -68,10 +69,11 @@ async.eachSeries(sources, function (source, callback) {
             image: scrapper.image,
             price: scrapper.price,
             link: scrapper.link
-            }])(function (err, output) {
+            }]).paginate(".next@href")(function (err, output) {
             if (err) console.log(err);
             if (typeof output !== 'undefined') {
-                insert(output, category, logo, brand);
+                insert(output, category, logo, brand, isMobile);
+                console.log("Scrapping: " + source.url);
                 console.log("Scrapping done: " + output.length + " records found");
                 callback(null)
             } else {
@@ -114,11 +116,15 @@ function scrapeJson(url, page, baseurl, category, logo, brand) {
 }
 
 
-function insert(records, category, logo, brand) {
+function insert(records, category, logo, brand, isMobile) {
     var values = [];
     try {
         records.forEach(function (element, index) {
-            values.push([1, logo, util.clean(element.name), '', category, brand, util.extractNumber(element.price), util.clean(element.image), util.clean(element.link), '', '']);
+            var link = util.clean(element.link)
+            if (isMobile) {
+                link = link.replace('m.', 'www.');
+            }
+            values.push([1, logo, util.clean(element.name), '', category, brand, util.extractNumber(element.price), util.clean(element.image), link, '', '']);
         });
 
         if (values.length > 0) {
