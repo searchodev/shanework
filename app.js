@@ -12,6 +12,7 @@ var xray = require('x-ray');
 var mysql = require('mysql');
 var async = require("async");
 var request = require("request");
+var jselect = require("JSONSelect");
 
 // Custom Module dependency
 var util = require('./lib/util.js');
@@ -45,35 +46,39 @@ async.eachSeries(sources, function (source, callback) {
     var logo = scrapper.logo;
     var brand = scrapper.brand;
     var isMobile = scrapper.isMobile || false;
+    var totalSelector = scrapper.total;
 
-
-
-    if (scrapper.isJson) {
-        request(source.url.replace('{{page}}', 1), function (err, response, data) {
-            if (!err) {
-                var js = JSON.parse(data);
-                var total = js.list.products_total;
-                console.log("Scrapping: " + source.url);
-                console.log("Total products found: " + total);
-                for (var i = 0; i < total / 30; i++) {
-                    scrapeJson(source.url, (i + 1), scrapper.baseurl, category, logo, brand);
+    if (scrapper.isDynamic) {
+        if (scrapper.isJSON) {
+            request(source.url.replace('{{page}}', 1), function (err, response, data) {
+                if (!err) {
+                    var js = JSON.parse(data);
+                    var total = jselect.match(totalSelector, js);
+                    //var total = js.list.products_total;
+                    console.log("Scrapping: " + source.url);
+                    console.log("Total products found: " + total);
+                    for (var i = 0; i < total / 30; i++) {
+                        scrapeJson(source.url, (i + 1), scrapper.baseurl, category, logo, brand);
+                    }
+                    callback(null);
                 }
-                callback(null);
-            }
-        });
+            });
+        } else if (scrapper.isHTML) {
 
+        }
 
     } else {
+        var paginate = scrapper.paginate;
         parser(source.url, scrapper.list, [{
             name: scrapper.name,
             image: scrapper.image,
             price: scrapper.price,
             link: scrapper.link
-            }]).paginate(".next@href")(function (err, output) {
+            }]).paginate(paginate)(function (err, output) {
             if (err) console.log(err);
             if (typeof output !== 'undefined') {
-                insert(output, category, logo, brand, isMobile);
                 console.log("Scrapping: " + source.url);
+                insert(output, category, logo, brand, isMobile);
                 console.log("Scrapping done: " + output.length + " records found");
                 callback(null)
             } else {

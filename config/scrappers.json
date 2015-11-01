@@ -13,7 +13,8 @@
         "name": ".itm-imageWrapper[title]@title",
         "image": ".itm-img[src]@src",
         "price": ".itm-price",
-        "link": "   a[href]@href",
+        "link": "a[href]@href",
+        "paginate": ".next@href",
         "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/fabfurnish_logo.png",
         "brand": "fabfurnish",
         "isMobile": true
@@ -55,8 +56,19 @@
         "brand": "ezoneonline"
     },
     "caratlane": {
-        "isJson": true,
+        "isDynamic": true,
+        "isJSON": true,
         "baseurl": "http://www.caratlane.com",
+        "total": ".\"products_total\"",
+        "list": ".item",
+        "name": ".product_name > a",
+        "image": ".product_image_container > a > img[src]@src",
+        "price": ".regular_price",
+        "link": ".product_image_container > a[href]@href",
+        "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/fabfurnish_logo.png",
+        "brand": "caratlane"
+    },
+    "caratlanehtml": {
         "list": ".item",
         "name": ".product_name > a",
         "image": ".product_image_container > a > img[src]@src",

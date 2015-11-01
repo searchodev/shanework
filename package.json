@@ -10,7 +10,8 @@
         "mysql": "latest",
         "mysql-utilities": "latest",
         "async": "latest",
-        "request": "latest"
+        "request": "latest",
+        "JSONSelect": "latest"
     },
 
     "license": "UNLICENSED",

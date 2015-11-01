@@ -1,5 +1,9 @@
 [
-
+    {
+        "url": "https://www.caratlane.com/v5/listing/view?safepage={{page}}&sort=&url=kada-jewellery",
+        "category": 1256,
+        "scrapper": "caratlane"
+    },
     {
         "url": "https://www.caratlane.com/v5/listing/view?safepage={{page}}&sort=&url=gemstone-jewellery",
         "category": 251,
