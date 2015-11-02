@@ -48,6 +48,14 @@ async.eachSeries(sources, function (source, callback) {
     var isMobile = scrapper.isMobile || false;
     var totalSelector = scrapper.total;
 
+    var selectors = {
+        list: scrapper.list,
+        name: scrapper.name,
+        image: scrapper.image,
+        price: scrapper.price,
+        link: scrapper.link
+    };
+
     if (scrapper.isDynamic) {
         if (scrapper.isJSON) {
             request(source.url.replace('{{page}}', 1), function (err, response, data) {
@@ -58,7 +66,7 @@ async.eachSeries(sources, function (source, callback) {
                     console.log("Scrapping: " + source.url);
                     console.log("Total products found: " + total);
                     for (var i = 0; i < total / 30; i++) {
-                        scrapeJson(source.url, (i + 1), scrapper.baseurl, category, logo, brand);
+                        scrapeJson(source.url, (i + 1), scrapper.baseurl, category, logo, brand, selectors);
                     }
                     callback(null);
                 }
@@ -89,25 +97,23 @@ async.eachSeries(sources, function (source, callback) {
 
 });
 
-function scrapeJson(url, page, baseurl, category, logo, brand) {
+function scrapeJson(url, page, baseurl, category, logo, brand, selectors) {
     var targetUrl = url.replace('{{page}}', page);
     request(targetUrl, function (err, response, data) {
         console.log("Scrapping: " + targetUrl)
         if (!err) {
             var js = JSON.parse(data);
-            var products = js.list.products;
-            var output = []
+            var products = jselect.match(selectors.list, js);
+            var output = [];
 
-            products.forEach(function (product, index) {
+            products[0].forEach(function (product, index) {
                 var item = {
-                    name: product.name,
-                    image: "http:" + product.image,
-                    price: product.final_price,
-                    link: baseurl + product.url
-                }
-
-                output.push(item)
-
+                    name: product[selectors.name],
+                    image: "http:" + product[selectors.image],
+                    price: product[selectors.price],
+                    link: baseurl + product[selectors.link]
+                };
+                output.push(item);
             })
             if (typeof output !== 'undefined') {
                 insert(output, category, logo, brand);
