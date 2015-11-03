@@ -60,6 +60,7 @@
         "isJSON": true,
         "baseurl": "http://www.caratlane.com",
         "total": ".\"products_total\"",
+        "totalPerPage": 30,
         "list": ".\"products\"",
         "name": ".\"name\"",
         "image": ".\"image\"",
@@ -76,5 +77,19 @@
         "link": ".product_image_container > a[href]@href",
         "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/fabfurnish_logo.png",
         "brand": "caratlane"
+    },
+    "jabong": {
+      "isDynamic": true,
+      "isHTML": true,
+      "baseurl": "http://www.jabong.com",
+      "total": ".product-count",
+      "totalPerPage": 52,
+      "list": ".product-tile",
+      "name": ".name",
+      "image": ".image",
+      "price": ".standard-price",
+      "link": ".url",
+      "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/fabfurnish_logo.png",
+      "brand": "jabong"
     }
 }

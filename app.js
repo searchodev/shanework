@@ -1,7 +1,7 @@
 /*
     File Name: app.js
     Purpose: Scrapping the web.
-    Author: Shane Ramiah (shane@wirebytes.com)    
+    Author: Shane Ramiah (shane@wirebytes.com)
 */
 
 
@@ -47,6 +47,7 @@ async.eachSeries(sources, function (source, callback) {
     var brand = scrapper.brand;
     var isMobile = scrapper.isMobile || false;
     var totalSelector = scrapper.total;
+    var totalPerPage = scrapper.totalPerPage;
 
     var selectors = {
         list: scrapper.list,
@@ -65,14 +66,27 @@ async.eachSeries(sources, function (source, callback) {
                     //var total = js.list.products_total;
                     console.log("Scrapping: " + source.url);
                     console.log("Total products found: " + total);
-                    for (var i = 0; i < total / 30; i++) {
+                    for (var i = 0; i < total / totalPerPage; i++) {
                         scrapeJson(source.url, (i + 1), scrapper.baseurl, category, logo, brand, selectors);
                     }
                     callback(null);
                 }
             });
         } else if (scrapper.isHTML) {
-
+          parser(source.url.replace('{{page}}', 1), totalSelector)( function (err, data) {
+              if (!err) {
+                  console.log(data);
+                  var total = util.extractNumber(data);
+                  //var total = js.list.products_total;
+                  console.log("Scrapping: " + source.url);
+                  console.log("Total products found: " + total);
+                  scrapeHTML(source.url, 1, total, totalPerPage, scrapper.baseurl, category, logo, brand, selectors);
+                  callback(null);
+              }
+              else {
+                console.log(err)
+              }
+          });
         }
 
     } else {
@@ -96,6 +110,37 @@ async.eachSeries(sources, function (source, callback) {
     }
 
 });
+
+function scrapeHTML(url, page, total, totalPerPage, baseurl, category, logo, brand, selectors) {
+
+    if (page < total / totalPerPage){
+      var targetUrl = url.replace('{{page}}', page);
+      console.log(targetUrl);
+      parser(targetUrl, selectors.list, [{
+          name: selectors.name,
+          image: selectors.image,
+          price: selectors.price,
+          link: selectors.link
+          }])(function (err, output) {
+          if (err) console.log(err);
+          if (typeof output !== 'undefined') {
+              console.log("Scrapping: " + url);
+              insert(output, category, logo, brand);
+              console.log("Scrapping done: " + output.length + " records found");
+              scrapeHTML(url, (page + 1), total, totalPerPage, baseurl, category, logo, brand, selectors);
+          } else {
+              console.log("Could not scrape webpage. Webpage might be unvailable or taking too long to respond.");
+          }
+        });
+
+    }
+    else {
+        callback(null);
+    }
+
+}
+
+
 
 function scrapeJson(url, page, baseurl, category, logo, brand, selectors) {
     var targetUrl = url.replace('{{page}}', page);
@@ -123,11 +168,11 @@ function scrapeJson(url, page, baseurl, category, logo, brand, selectors) {
             }
         }
     })
-
 }
 
 
 function insert(records, category, logo, brand, isMobile) {
+
     var values = [];
     try {
         records.forEach(function (element, index) {
@@ -135,7 +180,7 @@ function insert(records, category, logo, brand, isMobile) {
             if (isMobile) {
                 link = link.replace('m.', 'www.');
             }
-            values.push([1, logo, util.clean(element.name), '', category, brand, util.extractNumber(element.price), util.clean(element.image), link, '', '']);
+            values.push([1, logo, util.clean(element.name), '', category, brand, util.extractPrice(element.price), util.clean(element.image), link, '', '']);
         });
 
         if (values.length > 0) {
