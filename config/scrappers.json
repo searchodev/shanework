@@ -19,6 +19,17 @@
         "brand": "fabfurnish",
         "isMobile": true
     },
+    "jewelsouk": {
+        "list": ".product-list-container",
+        "name": ".text-color-sku[title]@title",
+        "image": ".addImage[src]@src",
+        "price": ".text-color-price",
+        "link": ".product_img_link[href]@href",
+        "paginate": ".pagination_next > a@href",
+        "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/fabfurnish_logo.png",
+        "brand": "jewelsouk",
+        "isMobile": true
+    },
     "homeshop18": {
         "list": "td",
         "name": "a[title]@title",
@@ -94,9 +105,9 @@
     },
     "pepperfry": {
       "isDynamic": true,
-      "isJSON": true,
+      "isHybrid": true,
       "baseurl": "http://www.pepperfry.com",
-      "total": ".product-count",
+      "total": ".clip-category-num",
       "totalPerPage": 52,
       "list": ".product-tile",
       "name": ".name",

@@ -13,6 +13,7 @@ var mysql = require('mysql');
 var async = require("async");
 var request = require("request");
 var jselect = require("JSONSelect");
+var cheerio = require('cheerio')
 
 // Custom Module dependency
 var util = require('./lib/util.js');
@@ -75,7 +76,6 @@ async.eachSeries(sources, function (source, callback) {
         } else if (scrapper.isHTML) {
           parser(source.url.replace('{{page}}', 1), totalSelector)( function (err, data) {
               if (!err) {
-                  console.log(data);
                   var total = util.extractNumber(data);
                   //var total = js.list.products_total;
                   console.log("Scrapping: " + source.url);
@@ -85,6 +85,16 @@ async.eachSeries(sources, function (source, callback) {
               }
               else {
                 console.log(err)
+              }
+          });
+        } else if (scrapper.isHybrid) {
+          parser(source.urlPage, totalSelector)( function (err, data) {
+              if (!err) {
+                  var total = util.extractNumber(data);
+                    console.log("Scrapping: " + source.url);
+                    console.log("Total products found: " + total);
+                    scrapeHybrid(source.url, 1, scrapper.baseurl, category, logo, brand, selectors);
+                    callback(null);
               }
           });
         }
@@ -160,6 +170,49 @@ function scrapeJson(url, page, baseurl, category, logo, brand, selectors) {
                 };
                 output.push(item);
             })
+            if (typeof output !== 'undefined') {
+                insert(output, category, logo, brand);
+                console.log("Scrapping done: " + output.length + " records found");
+            } else {
+                console.log("Could not scrape webpage. Webpage might be unvailable or taking too long to respond.");
+            }
+        }
+    })
+}
+
+
+function scrapeHybrid(url, page, baseurl, category, logo, brand, selectors) {
+    var targetUrl = url.replace('{{page}}', page);
+    request(targetUrl, function (err, response, data) {
+        console.log("Scrapping: " + targetUrl)
+        var output = [];
+        if (!err) {
+            var js = JSON.parse(data);
+
+            var html = js.html;
+            //console.log(html);
+
+            $ = cheerio.load(html);
+
+            var products = $('.grid-view');
+
+            console.log(products);
+
+            products.each(function (index, product) {
+
+                var item = {
+                    name: $(product).find(".card-body-title").text(),
+                    image: $(product).find(".card-header-img").find("a").find("img").attr('src'),
+                    price: $(product).find(".card-body-title").text(),
+                    link: baseurl + $(product).find(".card-header-img > img").attr('src')
+                };
+                output.push(item);
+
+                console.log(item);
+
+            })
+
+
             if (typeof output !== 'undefined') {
                 insert(output, category, logo, brand);
                 console.log("Scrapping done: " + output.length + " records found");

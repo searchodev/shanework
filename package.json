@@ -11,7 +11,8 @@
         "mysql-utilities": "latest",
         "async": "latest",
         "request": "latest",
-        "JSONSelect": "latest"
+        "JSONSelect": "latest",
+        "cheerio": "latest"
     },
 
     "license": "UNLICENSED",

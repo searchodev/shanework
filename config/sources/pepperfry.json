@@ -1,0 +1,15 @@
+[
+    {
+        "url": "http://www.pepperfry.com/site_product/getInfiniteData?type=clp-fu-mb-r1c1-bb&layout=1x1&is_search=false&is_brand_page=false&cat=2118&p={{page}}&_=1446568529955",
+        "urlPage": "http://www.pepperfry.com/furniture-mattresses-queen-beds.html",
+        "category": 1256,
+        "scrapper": "pepperfry"
+    },
+    {
+        "url": "http://www.pepperfry.com/site_product/getInfiniteData?layout=1x1&is_search=false&is_brand_page=false&cat=2092&p={{page}}&_=1447825185055",
+        "urlPage": "http://www.pepperfry.com/furniture-mattresses-queen-beds.html",
+        "category": 1256,
+        "scrapper": "pepperfry"
+    }
+
+]
