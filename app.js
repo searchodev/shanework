@@ -55,6 +55,7 @@ async.eachSeries(sources, function (source, callback) {
         name: scrapper.name,
         image: scrapper.image,
         price: scrapper.price,
+        priceAlt: scrapper.priceAlt || '',
         link: scrapper.link
     };
 
@@ -76,7 +77,14 @@ async.eachSeries(sources, function (source, callback) {
         } else if (scrapper.isHTML) {
           parser(source.url.replace('{{page}}', 1), totalSelector)( function (err, data) {
               if (!err) {
-                  var total = util.extractNumber(data);
+                  var total = 0;
+                  if (scrapper.extractTotal)
+                  {
+                    total = util.extractTotal(data);
+                  }
+                  else {
+                    total = util.extractNumber(data);
+                  }
                   //var total = js.list.products_total;
                   console.log("Scrapping: " + source.url);
                   console.log("Total products found: " + total);
@@ -130,6 +138,7 @@ function scrapeHTML(url, page, total, totalPerPage, baseurl, category, logo, bra
           name: selectors.name,
           image: selectors.image,
           price: selectors.price,
+          priceAlt: selectors.priceAlt,
           link: selectors.link
           }])(function (err, output) {
           if (err) console.log(err);
@@ -190,13 +199,10 @@ function scrapeHybrid(url, page, baseurl, category, logo, brand, selectors) {
             var js = JSON.parse(data);
 
             var html = js.html;
-            //console.log(html);
 
             $ = cheerio.load(html);
 
             var products = $('.grid-view');
-
-            console.log(products);
 
             products.each(function (index, product) {
 
@@ -208,7 +214,6 @@ function scrapeHybrid(url, page, baseurl, category, logo, brand, selectors) {
                 };
                 output.push(item);
 
-                console.log(item);
 
             })
 
@@ -233,9 +238,12 @@ function insert(records, category, logo, brand, isMobile) {
             if (isMobile) {
                 link = link.replace('m.', 'www.');
             }
-            values.push([1, logo, util.clean(element.name), '', category, brand, util.extractPrice(element.price), util.clean(element.image), link, '', '']);
+            var price = element.price || element.priceAlt;
+            if (typeof price != 'undefined')
+            {
+                values.push([1, logo, util.clean(element.name), '', category, brand, util.extractPrice(price), util.clean(element.image), link, '', '']);
+            }
         });
-
         if (values.length > 0) {
             console.log("Inserting: " + values.length + " Records");
             pool.getConnection(function (err, connection) {

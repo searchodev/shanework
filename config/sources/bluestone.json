@@ -1,0 +1,42 @@
+[
+    {
+        "url": "http://www.bluestone.com/jewellery/earrings.html?id_category=2&p={{page}}&scroll=true",
+        "category": 78,
+        "scrapper": "bluestone"
+    },
+    {
+        "url": "http://www.bluestone.com/jewellery/rings.html?id_category=2&scroll=true&p={{page}}&scroll=true",
+        "category": 79,
+        "scrapper": "bluestone"
+    },
+    {
+        "url": "http://www.bluestone.com/jewellery/pendants.html?id_category=2&scroll=true&p={{page}}&scroll=true",
+        "category": 77,
+        "scrapper": "bluestone"
+    },
+    {
+        "url": "http://www.bluestone.com/jewellery/bangles.html?id_category=2&scroll=true&p={{page}}&scroll=true",
+        "category": 81,
+        "scrapper": "bluestone"
+    },
+    {
+        "url": "http://www.bluestone.com/jewellery/bracelets.html?id_category=2&scroll=true&p={{page}}&scroll=true",
+        "category": 81,
+        "scrapper": "bluestone"
+    },
+    {
+        "url": "http://www.bluestone.com/jewellery/tanmaniya.html?id_category=2&scroll=true&p={{page}}&scroll=true",
+        "category": 80,
+        "scrapper": "bluestone"
+    },
+    {
+        "url": "http://www.bluestone.com/jewellery/nose+pins.html?id_category=2&scroll=true&p={{page}}&scroll=true",
+        "category": 251,
+        "scrapper": "bluestone"
+    },
+    {
+        "url": "http://www.bluestone.com/jewellery/necklaces.html?id_category=2&scroll=true&p={{page}}&scroll=true",
+        "category": 251,
+        "scrapper": "bluestone"
+    }
+  ]

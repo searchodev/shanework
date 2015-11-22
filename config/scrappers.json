@@ -27,8 +27,23 @@
         "link": ".product_img_link[href]@href",
         "paginate": ".pagination_next > a@href",
         "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/fabfurnish_logo.png",
-        "brand": "jewelsouk",
-        "isMobile": true
+        "brand": "jewelsouk"
+    },
+    "bluestone": {
+      "isDynamic": true,
+      "isHTML": true,
+      "baseurl": "http://www.bluestone.com",
+      "total": "#countRange",
+      "extractTotal": true,
+      "totalPerPage": 24,
+      "list": ".item",
+      "name": "a[title]@title",
+      "image": "a > img[data-hu]@data-hu",
+      "price": ".list-view-price",
+      "priceAlt": ".new-price",
+      "link": "a[href]@href",
+      "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/fabfurnish_logo.png",
+      "brand": "bluestone"
     },
     "homeshop18": {
         "list": "td",
