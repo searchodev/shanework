@@ -238,10 +238,19 @@ function insert(records, category, logo, brand, isMobile) {
             if (isMobile) {
                 link = link.replace('m.', 'www.');
             }
-            var price = element.price || element.priceAlt;
+            var price = 0;
+            if (typeof element.priceAlt != 'undefined')
+            {
+              price = util.extractPrice(element.priceAlt);
+            }
+            else {
+              price = util.extractPrice(element.price);
+            }
+
+
             if (typeof price != 'undefined')
             {
-                values.push([1, logo, util.clean(element.name), '', category, brand, util.extractPrice(price), util.clean(element.image), link, '', '']);
+                values.push([1, logo, util.clean(element.name), '', category, brand, price, util.clean(element.image), link, '', '']);
             }
         });
         if (values.length > 0) {
