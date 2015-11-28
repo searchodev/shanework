@@ -38,7 +38,7 @@
       "totalPerPage": 24,
       "list": "#grid-view-result > .product-list > .item",
       "name": "a[title]@title",
-      "image": "a > img[data-hu]@data-hu",
+      "image": "a > img[data-hu]@data-original",
       "price": ".price",
       "priceAlt": ".new-price",
       "link": "a[href]@href",
