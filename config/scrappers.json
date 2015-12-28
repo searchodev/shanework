@@ -29,6 +29,16 @@
         "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/fabfurnish_logo.png",
         "brand": "jewelsouk"
     },
+    "newu": {
+        "list": ".item",
+        "name": ".item-image > a[title]@title",
+        "image": ".item-image > a > img[src]@src",
+        "price": ".price",
+        "link": ".item-image > a[href]@href",
+        "paginate": ".next@href",
+        "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/fabfurnish_logo.png",
+        "brand": "newu"
+    },
     "bluestone": {
       "isDynamic": true,
       "isHTML": true,
@@ -44,6 +54,22 @@
       "link": "a[href]@href",
       "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/fabfurnish_logo.png",
       "brand": "bluestone"
+    },
+    "urbanladder": {
+      "isDynamic": true,
+      "isHTML": true,
+      "baseurl": "http://www.urbanladder.com",
+      "total": ".results-count",
+      "extractTotal": true,
+      "totalPerPage": 30,
+      "list": ".product",
+      "name": ".product-img[title]@title",
+      "image": ".product-img > img[data-hu]@data-original",
+      "price": ".price",
+      "priceAlt": ".price",
+      "link": ".product-img[href]@href",
+      "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/fabfurnish_logo.png",
+      "brand": "urbanladder"
     },
     "homeshop18": {
         "list": "td",
@@ -117,6 +143,35 @@
       "link": "a[href]@href",
       "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/fabfurnish_logo.png",
       "brand": "jabong"
+    },
+    "fashionara": {
+      "isDynamic": true,
+      "isHTML": true,
+      "baseurl": "http://www.fashionara.com/",
+      "total": ".item",
+      "totalPerPage": 15,
+      "list": ".item",
+      "name": ".product-name",
+      "image": ".product-image[data-image-src]@data-image-src",
+      "priceAlt": ".special-price > .price",
+      "price": ".regular-price > .price",
+      "link": ".product-image[href]@href",
+      "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/fabfurnish_logo.png",
+      "brand": "fashionara"
+    },
+    "nykaa": {
+      "isDynamic": true,
+      "isHTML": true,
+      "baseurl": "http://www.fashionara.com/",
+      "total": ".item",
+      "totalPerPage": 20,
+      "list": ".item",
+      "name": ".product-name > a",
+      "image": ".product-image > img[src]@src",
+      "price": "meta[itemprop='price']@content",
+      "link": ".product-name > a[href]@href",
+      "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/fabfurnish_logo.png",
+      "brand": "nykaa"
     },
     "pepperfry": {
       "isDynamic": true,

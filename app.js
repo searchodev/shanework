@@ -85,10 +85,10 @@ async.eachSeries(sources, function (source, callback) {
                   else {
                     total = util.extractNumber(data);
                   }
-                  //var total = js.list.products_total;
+
                   console.log("Scrapping: " + source.url);
                   console.log("Total products found: " + total);
-                  scrapeHTML(source.url, 1, total, totalPerPage, scrapper.baseurl, category, logo, brand, selectors);
+                  scrapeHTML(source.url, 1, total, totalPerPage, scrapper.baseurl, category, logo, brand, selectors, true);
                   callback(null);
               }
               else {
@@ -129,11 +129,23 @@ async.eachSeries(sources, function (source, callback) {
 
 });
 
-function scrapeHTML(url, page, total, totalPerPage, baseurl, category, logo, brand, selectors) {
+function scrapeHTML(url, page, total, totalPerPage, baseurl, category, logo, brand, selectors, last) {
 
-    if (page < total / totalPerPage){
+
+    if (isNaN(total))
+    {
+      total = 0;
+    }
+
+    if ((page < total / totalPerPage) || last){
+
       var targetUrl = url.replace('{{page}}', page);
       console.log(targetUrl);
+
+      if (selectors.priceAlt == '')
+      {
+        selectors.priceAlt = selectors.price;
+      }
       parser(targetUrl, selectors.list, [{
           name: selectors.name,
           image: selectors.image,
@@ -146,7 +158,14 @@ function scrapeHTML(url, page, total, totalPerPage, baseurl, category, logo, bra
               console.log("Scrapping: " + url);
               insert(output, category, logo, brand);
               console.log("Scrapping done: " + output.length + " records found");
-              scrapeHTML(url, (page + 1), total, totalPerPage, baseurl, category, logo, brand, selectors);
+              if (output.length > 0)
+              {
+                  scrapeHTML(url, (page + 1), total, totalPerPage, baseurl, category, logo, brand, selectors, true);
+              }
+              else {
+                  scrapeHTML(url, (page + 1), total, totalPerPage, baseurl, category, logo, brand, selectors, false);
+              }
+
           } else {
               console.log("Could not scrape webpage. Webpage might be unvailable or taking too long to respond.");
           }
@@ -255,6 +274,7 @@ function insert(records, category, logo, brand, isMobile) {
         });
         if (values.length > 0) {
             console.log("Inserting: " + values.length + " Records");
+            console.log(values);
             pool.getConnection(function (err, connection) {
                 var sql = "INSERT INTO products (m_id, m_logo, name, description, category, brand, price, image, url, size, color) VALUES ? ON DUPLICATE KEY UPDATE m_id=m_id, m_logo=m_logo, name=name, description=description, category=category, brand=brand, price=price, image=image, size=size, color=color ";
                 if (typeof connection != 'undefined') {
