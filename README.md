@@ -23,7 +23,32 @@ Two configuration files can be modified under ``conf`` directory.
 
   - ``db.json`` which holds the database connection info.
   - ``scrapper.json`` used to configure the scrapper using [CSS Selector] or specified as JSON.
- 
+
+
+### Scheduler Configuration
+
+  ``schedule.json`` stores the information to automate the running of the scapper at specified schedule.
+
+  Schduler uses cron format as follows:
+
+  *    *    *    *    *    *
+  ┬    ┬    ┬    ┬    ┬    ┬
+  │    │    │    │    │    |
+  │    │    │    │    │    └ day of week (0 - 7) (0 or 7 is Sun)
+  │    │    │    │    └───── month (1 - 12)
+  │    │    │    └────────── day of month (1 - 31)
+  │    │    └─────────────── hour (0 - 23)
+  │    └──────────────────── minute (0 - 59)
+  └───────────────────────── second (0 - 59, OPTIONAL)
+
+  The example below will run the fabfurnish every Saturday at 8:05
+
+  ```sh
+  {"job":"fabfurnish", "schedule": "5 8 * * 6"}
+  ```
+
+
+
 Under ``conf\sources`` directory you need to add your sources configuration together with their category mapping.
 
 

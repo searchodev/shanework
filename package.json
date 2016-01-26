@@ -12,7 +12,8 @@
         "async": "latest",
         "request": "latest",
         "JSONSelect": "latest",
-        "cheerio": "latest"
+        "cheerio": "latest",
+        "node-schedule": "latest"
     },
 
     "license": "UNLICENSED",
