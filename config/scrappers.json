@@ -39,6 +39,16 @@
         "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/fabfurnish_logo.png",
         "brand": "newu"
     },
+    "cbazaar": {
+        "list": ".tabfilter_box",
+        "name": ".carousel > .carousel-inner > a[title]@title",
+        "image": ".carousel > .carousel-inner > a > img[original]@original",
+        "price": ".newprice",
+        "link": ".carousel > .carousel-inner > a[href]@href",
+        "paginate": ".paginext@href",
+        "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/fabfurnish_logo.png",
+        "brand": "cbazaar"
+    },
     "bluestone": {
       "isDynamic": true,
       "isHTML": true,
