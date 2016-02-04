@@ -122,7 +122,7 @@ async.eachSeries(sources, function (source, callback) {
                 console.log("Scrapping done: " + output.length + " records found");
                 callback(null)
             } else {
-                console.log("Could not scrape webpage. Webpage might be unvailable or taking too long to respond.");
+                console.log("Could not scrape webpage. Webpage might be unvailable, taking too long to respond or no more page available for dyanamic scrapping.");
             }
         })
     }
@@ -131,13 +131,18 @@ async.eachSeries(sources, function (source, callback) {
 
 function scrapeHTML(url, page, total, totalPerPage, baseurl, category, logo, brand, selectors, last) {
 
-
     if (isNaN(total))
     {
       total = 0;
     }
+    if (page > Math.ceil(total / totalPerPage) && total != 0)
+    {
+      last = false;
+    }
 
-    if ((page < total / totalPerPage) || last){
+    console.log(last);
+
+    if (page < (Math.ceil(total / totalPerPage)) || last){
 
       var targetUrl = url.replace('{{page}}', page);
       console.log(targetUrl);

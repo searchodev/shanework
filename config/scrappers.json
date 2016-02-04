@@ -29,6 +29,16 @@
         "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/fabfurnish_logo.png",
         "brand": "jewelsouk"
     },
+    "ishimaya": {
+        "list": ".item",
+        "name": ".product-image > a[title]@title",
+        "image": ".product-image > a > img[src]@src",
+        "price": ".price",
+        "link": ".product-image > a[href]@href",
+        "paginate": ".next@href",
+        "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/fabfurnish_logo.png",
+        "brand": "ishimaya"
+    },
     "newu": {
         "list": ".item",
         "name": ".item-image > a[title]@title",
@@ -40,6 +50,11 @@
         "brand": "newu"
     },
     "cbazaar": {
+        "isDynamic": true,
+        "isHTML": true,
+        "baseurl": "http://www.cbazaar.com",
+        "totalPerPage": 30,
+        "total": "#ContentPlaceHolder1_paraTotalProducts",
         "list": ".tabfilter_box",
         "name": ".carousel > .carousel-inner > a[title]@title",
         "image": ".carousel > .carousel-inner > a > img[original]@original",
@@ -153,6 +168,35 @@
       "link": "a[href]@href",
       "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/fabfurnish_logo.png",
       "brand": "jabong"
+    },
+    "bonitto": {
+      "isDynamic": true,
+      "isHTML": true,
+      "baseurl": "http://www.bonitto.in",
+      "total": ".amount",
+      "extractTotal": true,
+      "totalPerPage": 24,
+      "list": ".product-item",
+      "name": ".product-img > a[title]@title",
+      "image": ".product-img > a > img[src]@src",
+      "price": ".price > .price",
+      "link": ".product-img > a[href]@href",
+      "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/fabfurnish_logo.png",
+      "brand": "bonitto"
+    },
+    "prettysecrets": {
+      "isDynamic": true,
+      "isHTML": true,
+      "baseurl": "http://www.prettysecrets.com",
+      "total": ".amount",
+      "totalPerPage": 32,
+      "list": ".catalogProduct",
+      "name": ".product-name",
+      "image": ".product-image > img[src]@src",
+      "price": ".price",
+      "link": ".product-image[href]@href",
+      "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/fabfurnish_logo.png",
+      "brand": "bonitto"
     },
     "fashionara": {
       "isDynamic": true,
