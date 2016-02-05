@@ -129,6 +129,8 @@ async.eachSeries(sources, function (source, callback) {
 
 });
 
+var lastLink = '';
+
 function scrapeHTML(url, page, total, totalPerPage, baseurl, category, logo, brand, selectors, last) {
 
     if (isNaN(total))
@@ -139,8 +141,6 @@ function scrapeHTML(url, page, total, totalPerPage, baseurl, category, logo, bra
     {
       last = false;
     }
-
-    console.log(last);
 
     if (page < (Math.ceil(total / totalPerPage)) || last){
 
@@ -165,7 +165,14 @@ function scrapeHTML(url, page, total, totalPerPage, baseurl, category, logo, bra
               console.log("Scrapping done: " + output.length + " records found");
               if (output.length > 0)
               {
-                  scrapeHTML(url, (page + 1), total, totalPerPage, baseurl, category, logo, brand, selectors, true);
+                  if (output[0].link == lastLink)
+                  {
+                      scrapeHTML(url, (page + 1), total, totalPerPage, baseurl, category, logo, brand, selectors, false);
+                  }
+                  else {
+                      scrapeHTML(url, (page + 1), total, totalPerPage, baseurl, category, logo, brand, selectors, true);
+                  }
+                  lastLink = output[0].link;
               }
               else {
                   scrapeHTML(url, (page + 1), total, totalPerPage, baseurl, category, logo, brand, selectors, false);
@@ -279,7 +286,7 @@ function insert(records, category, logo, brand, isMobile) {
         });
         if (values.length > 0) {
             console.log("Inserting: " + values.length + " Records");
-            console.log(values);
+            //console.log(values);
             pool.getConnection(function (err, connection) {
                 var sql = "INSERT INTO products (m_id, m_logo, name, description, category, brand, price, image, url, size, color) VALUES ? ON DUPLICATE KEY UPDATE m_id=m_id, m_logo=m_logo, name=name, description=description, category=category, brand=brand, price=price, image=image, size=size, color=color ";
                 if (typeof connection != 'undefined') {
@@ -295,3 +302,34 @@ function insert(records, category, logo, brand, isMobile) {
     }
 
 }
+
+
+// Warn if overriding existing method
+if(Array.prototype.equals)
+    console.warn("Overriding existing Array.prototype.equals. Possible causes: New API defines the method, there's a framework conflict or you've got double inclusions in your code.");
+// attach the .equals method to Array's prototype to call it on any array
+Array.prototype.equals = function (array) {
+    // if the other array is a falsy value, return
+    if (!array)
+        return false;
+
+    // compare lengths - can save a lot of time
+    if (this.length != array.length)
+        return false;
+
+    for (var i = 0, l=this.length; i < l; i++) {
+        // Check if we have nested arrays
+        if (this[i] instanceof Array && array[i] instanceof Array) {
+            // recurse into the nested arrays
+            if (!this[i].equals(array[i]))
+                return false;
+        }
+        else if (this[i] != array[i]) {
+            // Warning - two different object instances will never be equal: {x:20} != {x:20}
+            return false;
+        }
+    }
+    return true;
+}
+// Hide method from for-in loops
+Object.defineProperty(Array.prototype, "equals", {enumerable: false});
