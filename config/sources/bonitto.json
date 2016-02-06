@@ -1,7 +1,12 @@
 [
-    {
-        "url": "http://bonitto.in/sarees/lehenga-saree/page/{{page}}.html",
-        "category": 78,
-        "scrapper": "bonitto"
-    }
+  {"url":"http://bonitto.in/salwar-kameez/align/page/{{page}}.html", "category":13, "scrapper":"bonitto"},
+  {"url":"http://bonitto.in/salwar-kameez/anarkali/page/{{page}}.html", "category":129, "scrapper":"bonitto"},
+  {"url":"http://bonitto.in/salwar-kameez/palazzo/page/{{page}}.html", "category":28, "scrapper":"bonitto"},
+  {"url":"http://bonitto.in/salwar-kameez/patiyala/page/{{page}}.html", "category":0, "scrapper":"bonitto"},
+  {"url":"http://bonitto.in/salwar-kameez/straight/page/{{page}}.html", "category":93, "scrapper":"bonitto"},
+  {"url":"http://bonitto.in/sarees/lehenga-saree/page/{{page}}.html", "category":61, "scrapper":"bonitto"},
+  {"url":"http://bonitto.in/sarees/saree/page/{{page}}.html", "category":307, "scrapper":"bonitto"},
+  {"url":"http://bonitto.in/lehenga-choli/page/{{page}}.html", "category":117, "scrapper":"bonitto"},
+  {"url":"http://bonitto.in/gowns/page/{{page}}.html", "category":25, "scrapper":"bonitto"},
+  {"url":"http://bonitto.in/kurtis/page/{{page}}.html", "category":16, "scrapper":"bonitto"}
 ]

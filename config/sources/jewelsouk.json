@@ -1,7 +1,6 @@
-[{"url":"http://www.jewelsouk.com/jewellery/diamond-jewellery/diamond-mangalsutra/", "category":80
-, "scrapper":"jewelsouk"},
-{"url":"http://www.jewelsouk.com/jewellery/diamond-jewellery/diamond-bracelets/", "category":81
-, "scrapper":"jewelsouk"},
+[
+{"url":"http://www.jewelsouk.com/jewellery/diamond-jewellery/diamond-mangalsutra/", "category":80, "scrapper":"jewelsouk"},
+{"url":"http://www.jewelsouk.com/jewellery/diamond-jewellery/diamond-bracelets/", "category":81, "scrapper":"jewelsouk"},
 {"url":"http://www.jewelsouk.com/jewellery/diamond-jewellery/diamond-nosepin/", "category":12, "scrapper":"jewelsouk"},
 {"url":"http://www.jewelsouk.com/jewellery/diamond-jewellery/diamond-earrings/", "category":78, "scrapper":"jewelsouk"},
 {"url":"http://www.jewelsouk.com/jewellery/diamond-jewellery/diamond-bangles/", "category":81, "scrapper":"jewelsouk"},

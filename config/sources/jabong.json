@@ -1,4 +1,5 @@
-[{"url":"http://www.jabong.com/women/clothing/dresses-jumpsuits/dresses/?source=topnav_women&page={{page}}&limit=52&sortField=popularity&sortBy=desc","category":256,"scrapper":"jabong"},
+[
+{"url":"http://www.jabong.com/women/clothing/dresses-jumpsuits/dresses/?source=topnav_women&page={{page}}&limit=52&sortField=popularity&sortBy=desc","category":256,"scrapper":"jabong"},
 {"url":"http://www.jabong.com/women/clothing/tops-tees-shirts/?source=topnav_women&page={{page}}&limit=52&sortField=popularity&sortBy=desc","category":257,"scrapper":"jabong"},
 {"url":"http://www.jabong.com/women/clothing/tunics/?source=topnav_women&page={{page}}&limit=52&sortField=popularity&sortBy=desc","category":0,"scrapper":"jabong"},
 {"url":"http://www.jabong.com/women/clothing/lingerie-nightwear/beachwear/?source=topnav_women&page={{page}}&limit=52&sortField=popularity&sortBy=desc","category":0,"scrapper":"jabong"},
@@ -109,4 +110,5 @@
 {"url":"http://www.jabong.com/home-living/home-furnishing/curtains-sheers/?source=topnav_hf&page={{page}}&limit=52&sortField=popularity&sortBy=desc","category":175,"scrapper":"jabong"},
 {"url":"http://www.jabong.com/home-living/home-furnishing/carpets-rugs/?source=topnav_hf&page={{page}}&limit=52&sortField=popularity&sortBy=desc","category":179,"scrapper":"jabong"},
 {"url":"http://www.jabong.com/home-living/home-furnishing/bath/?cmpgp=towel-slider-1&icn=towel-fest-sis&ici=r1_b1_towel-fest&source=topnav_hf&page={{page}}&limit=52&sortField=popularity&sortBy=desc","category":170,"scrapper":"jabong"},
-{"url":"http://www.jabong.com/home-living/home-furnishing/kitchen-table-linen/?source=topnav_hf&page={{page}}&limit=52&sortField=popularity&sortBy=desc","category":191,"scrapper":"jabong"}]
+{"url":"http://www.jabong.com/home-living/home-furnishing/kitchen-table-linen/?source=topnav_hf&page={{page}}&limit=52&sortField=popularity&sortBy=desc","category":191,"scrapper":"jabong"}
+]
