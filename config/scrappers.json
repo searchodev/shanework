@@ -216,13 +216,13 @@
     "nykaa": {
       "isDynamic": true,
       "isHTML": true,
-      "baseurl": "http://www.fashionara.com/",
-      "total": ".item",
+      "baseurl": "http://www.nykaa.com/",
+      "total": "",
       "totalPerPage": 20,
       "list": ".item",
       "name": ".product-name > a",
       "image": ".product-image > img[src]@src",
-      "price": "meta[itemprop='price']@content",
+      "price": ".price",
       "link": ".product-name > a[href]@href",
       "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/fabfurnish_logo.png",
       "brand": "nykaa"
