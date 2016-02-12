@@ -13,7 +13,8 @@ var mysql = require('mysql');
 var async = require("async");
 var request = require("request");
 var jselect = require("JSONSelect");
-var cheerio = require('cheerio')
+var cheerio = require('cheerio');
+var winston = require('winston');
 
 // Custom Module dependency
 var util = require('./lib/util.js');
@@ -29,6 +30,18 @@ var sourceName = args[0] || 'fabfurnish';
 var db = JSON.parse(fs.readFileSync(configDir + '/db.json', 'utf8'));
 var sources = JSON.parse(fs.readFileSync(configDir + '/sources/' + sourceName + '.json', 'utf8'));
 var scrappers = JSON.parse(fs.readFileSync(configDir + '/scrappers.json', 'utf8'));
+
+var date = new Date()
+
+var timestamp = date.getDate().toString() + '-' + (date.getMonth() + 1 ).toString() + '-' + date.getFullYear().toString() + '-' + date.getHours().toString() + '-' + date.getMinutes().toString() + '-' + date.getSeconds().toString();
+
+var logger = new (winston.Logger)({
+  level: 'info',
+  transports: [
+    new (winston.transports.Console)(),
+    new (winston.transports.File)({ filename: sourceName + '-' + timestamp + '.log'  })
+  ]
+});
 
 // MySQL connection
 var connection = mysql.createConnection(db);
@@ -66,8 +79,8 @@ async.eachSeries(sources, function (source, callback) {
                     var js = JSON.parse(data);
                     var total = jselect.match(totalSelector, js);
                     //var total = js.list.products_total;
-                    console.log("Scrapping: " + source.url);
-                    console.log("Total products found: " + total);
+                    logger.info("Scrapping: " + source.url);
+                    logger.info("Total products found: " + total);
                     for (var i = 0; i < total / totalPerPage; i++) {
                         scrapeJson(source.url, (i + 1), scrapper.baseurl, category, logo, brand, selectors);
                     }
@@ -86,21 +99,21 @@ async.eachSeries(sources, function (source, callback) {
                     total = util.extractNumber(data);
                   }
 
-                  console.log("Scrapping: " + source.url);
-                  console.log("Total products found: " + total);
+                  logger.info("Scrapping: " + source.url);
+                  logger.info("Total products found: " + total);
                   scrapeHTML(source.url, 1, total, totalPerPage, scrapper.baseurl, category, logo, brand, selectors, true);
                   callback(null);
               }
               else {
-                console.log(err)
+                logger.log('warn', err)
               }
           });
         } else if (scrapper.isHybrid) {
           parser(source.urlPage, totalSelector)( function (err, data) {
               if (!err) {
                   var total = util.extractNumber(data);
-                    console.log("Scrapping: " + source.url);
-                    console.log("Total products found: " + total);
+                    logger.info("Scrapping: " + source.url);
+                    logger.info("Total products found: " + total);
                     scrapeHybrid(source.url, 1, scrapper.baseurl, category, logo, brand, selectors);
                     callback(null);
               }
@@ -115,14 +128,14 @@ async.eachSeries(sources, function (source, callback) {
             price: scrapper.price,
             link: scrapper.link
             }]).paginate(paginate)(function (err, output) {
-            if (err) console.log(err);
+            if (err) logger.log('warn', err);
             if (typeof output !== 'undefined') {
-                console.log("Scrapping: " + source.url);
+                logger.info("Scrapping: " + source.url);
                 insert(output, category, logo, brand, isMobile);
-                console.log("Scrapping done: " + output.length + " records found");
+                logger.info("Scrapping done: " + output.length + " records found");
                 callback(null)
             } else {
-                console.log("Could not scrape webpage. Webpage might be unvailable, taking too long to respond or no more page available for dyanamic scrapping.");
+                logger.info("Could not scrape webpage. Webpage might be unvailable, taking too long to respond or no more page available for dyanamic scrapping.");
             }
         })
     }
@@ -145,7 +158,7 @@ function scrapeHTML(url, page, total, totalPerPage, baseurl, category, logo, bra
     if (page < (Math.ceil(total / totalPerPage)) || last){
 
       var targetUrl = url.replace('{{page}}', page);
-      console.log(targetUrl);
+      logger.info(targetUrl);
 
       if (selectors.priceAlt == '')
       {
@@ -158,11 +171,11 @@ function scrapeHTML(url, page, total, totalPerPage, baseurl, category, logo, bra
           priceAlt: selectors.priceAlt,
           link: selectors.link
           }])(function (err, output) {
-          if (err) console.log(err);
+          if (err) logger.log('warn', err);
           if (typeof output !== 'undefined') {
-              console.log("Scrapping: " + url);
+              logger.info("Scrapping: " + url);
               insert(output, category, logo, brand);
-              console.log("Scrapping done: " + output.length + " records found");
+              logger.info("Scrapping done: " + output.length + " records found");
               if (output.length > 0)
               {
                   if (output[0].link == lastLink)
@@ -179,7 +192,7 @@ function scrapeHTML(url, page, total, totalPerPage, baseurl, category, logo, bra
               }
 
           } else {
-              console.log("Could not scrape webpage. Webpage might be unvailable or taking too long to respond.");
+              logger.info("Could not scrape webpage. Webpage might be unvailable or taking too long to respond.");
           }
         });
 
@@ -195,7 +208,7 @@ function scrapeHTML(url, page, total, totalPerPage, baseurl, category, logo, bra
 function scrapeJson(url, page, baseurl, category, logo, brand, selectors) {
     var targetUrl = url.replace('{{page}}', page);
     request(targetUrl, function (err, response, data) {
-        console.log("Scrapping: " + targetUrl)
+        logger.info("Scrapping: " + targetUrl)
         if (!err) {
             var js = JSON.parse(data);
             var products = jselect.match(selectors.list, js);
@@ -212,9 +225,9 @@ function scrapeJson(url, page, baseurl, category, logo, brand, selectors) {
             })
             if (typeof output !== 'undefined') {
                 insert(output, category, logo, brand);
-                console.log("Scrapping done: " + output.length + " records found");
+                logger.info("Scrapping done: " + output.length + " records found");
             } else {
-                console.log("Could not scrape webpage. Webpage might be unvailable or taking too long to respond.");
+                logger.info("Could not scrape webpage. Webpage might be unvailable or taking too long to respond.");
             }
         }
     })
@@ -224,7 +237,7 @@ function scrapeJson(url, page, baseurl, category, logo, brand, selectors) {
 function scrapeHybrid(url, page, baseurl, category, logo, brand, selectors) {
     var targetUrl = url.replace('{{page}}', page);
     request(targetUrl, function (err, response, data) {
-        console.log("Scrapping: " + targetUrl)
+        logger.info("Scrapping: " + targetUrl)
         var output = [];
         if (!err) {
             var js = JSON.parse(data);
@@ -251,9 +264,9 @@ function scrapeHybrid(url, page, baseurl, category, logo, brand, selectors) {
 
             if (typeof output !== 'undefined') {
                 insert(output, category, logo, brand);
-                console.log("Scrapping done: " + output.length + " records found");
+                logger.info("Scrapping done: " + output.length + " records found");
             } else {
-                console.log("Could not scrape webpage. Webpage might be unvailable or taking too long to respond.");
+                logger.info("Could not scrape webpage. Webpage might be unvailable or taking too long to respond.");
             }
         }
     })
@@ -285,8 +298,7 @@ function insert(records, category, logo, brand, isMobile) {
             }
         });
         if (values.length > 0) {
-            console.log("Inserting: " + values.length + " Records");
-            //console.log(values);
+            logger.info("Inserting: " + values.length + " Records");
             pool.getConnection(function (err, connection) {
                 var sql = "INSERT INTO products (m_id, m_logo, name, description, category, brand, price, image, url, size, color) VALUES ? ON DUPLICATE KEY UPDATE m_id=m_id, m_logo=m_logo, name=name, description=description, category=category, brand=brand, price=price, image=image, size=size, color=color ";
                 if (typeof connection != 'undefined') {

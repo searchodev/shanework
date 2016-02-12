@@ -13,7 +13,8 @@
         "request": "latest",
         "JSONSelect": "latest",
         "cheerio": "latest",
-        "node-schedule": "latest"
+        "node-schedule": "latest",
+        "winston": "latest"
     },
 
     "license": "UNLICENSED",
