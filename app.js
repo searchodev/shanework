@@ -198,7 +198,7 @@ function scrapeHTML(url, page, total, totalPerPage, baseurl, category, logo, bra
 
     }
     else {
-        callback(null);
+        //callback(null);
     }
 
 }
