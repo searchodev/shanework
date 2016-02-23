@@ -192,7 +192,7 @@ function scrapeHTML(url, page, total, totalPerPage, baseurl, category, logo, bra
               }
 
           } else {
-              logger.info("Could not scrape webpage. Webpage might be unvailable or taking too long to respond.");
+              logger.info("Could not scrape webpage. Webpage might be unvailable or taking too long to respond. " + url);
           }
         });
 
