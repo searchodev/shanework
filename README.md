@@ -29,19 +29,7 @@ Two configuration files can be modified under ``conf`` directory.
 
   ``schedule.json`` stores the information to automate the running of the scapper at specified schedule.
 
-  Schduler uses cron format as follows:
-
-  *    *    *    *    *    *
-  ┬    ┬    ┬    ┬    ┬    ┬
-  │    │    │    │    │    |
-  │    │    │    │    │    └ day of week (0 - 7) (0 or 7 is Sun)
-  │    │    │    │    └───── month (1 - 12)
-  │    │    │    └────────── day of month (1 - 31)
-  │    │    └─────────────── hour (0 - 23)
-  │    └──────────────────── minute (0 - 59)
-  └───────────────────────── second (0 - 59, OPTIONAL)
-
-  The example below will run the fabfurnish every Saturday at 8:05
+  Schduler uses cron format. The example below will run the fabfurnish every Saturday at 8:05
 
   ```sh
   {"job":"fabfurnish", "schedule": "5 8 * * 6"}
