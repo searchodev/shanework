@@ -6,7 +6,7 @@
     "main": "app.js",
     "author": "Shane Ramiah",
     "dependencies": {
-        "x-ray": "latest",
+        "x-ray": "2.0.3",
         "mysql": "latest",
         "mysql-utilities": "latest",
         "async": "latest",
