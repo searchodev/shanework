@@ -41,6 +41,18 @@ if (verboseParam === '-v')
   isVerbose = true;
 }
 
+//Bluestone specific
+
+if (sourceName == "bluestone")
+{
+  var form = new FormData();
+  form.append('sel-country', 'India');
+
+  form.submit('hhttp://www.bluestone.com/country/set/', function(err, res) {
+      // res – response object (http.IncomingMessage)  //
+      res.resume();
+    });
+}
 
 // Getting config from file
 var db = JSON.parse(fs.readFileSync(configDir + '/db.json', 'utf8'));
@@ -88,19 +100,6 @@ async.eachSeries(sources, function (source, callback) {
         priceAlt: scrapper.priceAlt || '',
         link: scrapper.link
     };
-
-    //Bluestone specific
-
-    if (scrapper.name == "bluestone")
-    {
-      var form = new FormData();
-      form.append('sel-country', 'India');
-
-      form.submit('hhttp://www.bluestone.com/country/set/', function(err, res) {
-          // res – response object (http.IncomingMessage)  //
-          res.resume();
-        });
-    }
 
     if (scrapper.isDynamic) {
         if (scrapper.isJSON) {
