@@ -14,7 +14,8 @@
         "JSONSelect": "latest",
         "cheerio": "latest",
         "node-schedule": "latest",
-        "winston": "latest"
+        "winston": "latest",
+        "form-data": "latest"
     },
 
     "license": "UNLICENSED",
