@@ -48,8 +48,7 @@ if (sourceName == "bluestone")
   var form = new FormData();
   form.append('sel-country', 'India');
 
-  form.submit('hhttp://www.bluestone.com/country/set/', function(err, res) {
-      // res – response object (http.IncomingMessage)  //
+  form.submit('http://www.bluestone.com/country/set/', function(err, res) {
       res.resume();
     });
 }
@@ -155,12 +154,14 @@ async.eachSeries(sources, function (source, callback) {
             name: scrapper.name,
             image: scrapper.image,
             price: scrapper.price,
+            priceAlt: scrapper.priceAlt,
             link: scrapper.link
             }]).paginate(paginate)(function (err, output) {
             if (err) logger.log('warn', err);
             if (typeof output !== 'undefined') {
                 logger.info("Scraping source: " + source.url);
                 logger.info("Scraping done: " + output.length + " records found");
+                logger.info(output);
                 insert(output, category, logo, brand, isMobile);
                 callback(null)
             } else {
@@ -323,6 +324,9 @@ function insert(records, category, logo, brand, isMobile, buildImage) {
             {
               price = util.extractPrice(element.priceAlt);
             }
+            else if (price == 0) {
+              price = util.extractPrice(element.price);
+            }
             else {
               price = util.extractPrice(element.price);
             }
@@ -332,7 +336,7 @@ function insert(records, category, logo, brand, isMobile, buildImage) {
                 logger.info(util.clean(element.name) + ", " + price +  ", " + image + ", " + link);
             }
 
-            if (typeof price !== 'undefined' && element.name !== "" && image !== "" && link !== "")
+            if (typeof price !== 'undefined' && element.name !== "" && image !== "" && link !== "" && price !== 0)
             {
                 values.push([1, logo, util.clean(element.name), '', category, brand, price, image, link, '', '']);
             }

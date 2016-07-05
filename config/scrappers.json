@@ -6,7 +6,7 @@
         "price": ".itm-price",
         "link": ".itm-link[href]@href",
         "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/fabfurnish_logo.png",
-        "brand": "fabfurnish"
+        "brand": "Fabfurnish"
     },
     "fabfurnishmobile": {
         "list": ".pro-content",
@@ -16,18 +16,18 @@
         "link": "a[href]@href",
         "paginate": ".next@href",
         "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/fabfurnish_logo.png",
-        "brand": "fabfurnish",
+        "brand": "Fabfurnish",
         "isMobile": true
     },
     "jewelsouk": {
         "list": ".thpadding",
         "name": ".product_img_link[title]@title",
         "image": ".img-responsive[data-echo]@data-echo",
-        "price": ".cut-price",
+        "price": ".cut-price > b",
         "link": ".product_img_link[href]@href",
         "paginate": ".pagination_next > a@href",
         "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/JEWELSOUK-LOGO.jpg",
-        "brand": "jewelsouk"
+        "brand": "Jewelsouk"
     },
     "ishimaya": {
         "list": ".item",
@@ -37,7 +37,7 @@
         "link": ".product-image[href]@href",
         "paginate": ".next@href",
         "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/fabfurnish_logo.png",
-        "brand": "ishimaya"
+        "brand": "Ishimaya"
     },
     "newu": {
         "list": ".item",
@@ -47,7 +47,7 @@
         "link": ".prod-img > a[href]@href",
         "paginate": ".next@href",
         "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/newlogo.jpg",
-        "brand": "newu"
+        "brand": "Newu"
     },
     "cbazaar": {
         "isDynamic": true,
@@ -78,7 +78,7 @@
       "priceAlt": ".new-price",
       "link": "a[href]@href",
       "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/BLUESTONE-LOGO.png",
-      "brand": "bluestone"
+      "brand": "Bluestone"
     },
     "urbanladder": {
       "isDynamic": true,
@@ -94,7 +94,7 @@
       "priceAlt": ".price-number",
       "link": ".product-img[href]@href",
       "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/fabfurnish_logo.png",
-      "brand": "urbanladder"
+      "brand": "Urbanladder"
     },
     "homeshop18": {
         "list": "td",
@@ -103,7 +103,7 @@
         "price": ".price",
         "link": "a[href]@href",
         "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/fabfurnish_logo.png",
-        "brand": "homeshop18"
+        "brand": "Homeshop18"
     },
     "ebay": {
         "list": ".itm",
@@ -144,7 +144,7 @@
         "price": "final_price",
         "link": "url",
         "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/CARATLANE-LOGO.jpg",
-        "brand": "caratlane"
+        "brand": "Caratlane"
     },
     "caratlanehtml": {
         "list": ".item",
@@ -153,7 +153,7 @@
         "price": ".regular_price",
         "link": ".product_image_container > a[href]@href",
         "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/CARATLANE-LOGO.jpg",
-        "brand": "caratlane"
+        "brand": "Caratlane"
     },
     "jabong": {
       "isDynamic": true,
@@ -164,10 +164,10 @@
       "list": ".product-tile",
       "name": ".h4",
       "image": ".primary-image[data-img-config]@data-img-config",
-      "price": ".standard-price",
+      "price": ".price > .standard-price",
       "link": "a[href]@href",
       "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/JABONG-LOGO.jpg",
-      "brand": "jabong",
+      "brand": "Jabong",
       "buildImage": true
     },
     "bonitto": {
@@ -183,7 +183,7 @@
       "price": ".price > .price",
       "link": ".product-img > a[href]@href",
       "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/fabfurnish_logo.png",
-      "brand": "bonitto"
+      "brand": "Bonitto"
     },
     "prettysecrets": {
       "isDynamic": true,
@@ -197,7 +197,7 @@
       "price": ".price",
       "link": ".product-image[href]@href",
       "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/prettysecrets-logo.jpg",
-      "brand": "bonitto"
+      "brand": "Pretty Secrets"
     },
     "fashionara": {
       "isDynamic": true,
@@ -212,7 +212,7 @@
       "price": ".regular-price > .price",
       "link": ".product-image[href]@href",
       "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/FASHIONARA-LOGO.png",
-      "brand": "fashionara"
+      "brand": "Fashionara"
     },
     "nykaa": {
       "isDynamic": true,
@@ -226,7 +226,7 @@
       "price": ".price",
       "link": ".product-name > a[href]@href",
       "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/fabfurnish_logo.png",
-      "brand": "nykaa"
+      "brand": "Nykaa"
     },
     "pepperfry": {
       "isDynamic": true,
@@ -240,6 +240,6 @@
       "price": ".standard-price",
       "link": ".url",
       "logo": "http://codenlogic.com/project/sos/wp-content/themes/sos/SiteLogos/Pepperfry-Logo.jpg",
-      "brand": "pepperfry"
+      "brand": "Pepperfry"
     }
 }
