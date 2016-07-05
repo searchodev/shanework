@@ -161,7 +161,6 @@ async.eachSeries(sources, function (source, callback) {
             if (typeof output !== 'undefined') {
                 logger.info("Scraping source: " + source.url);
                 logger.info("Scraping done: " + output.length + " records found");
-                logger.info(output);
                 insert(output, category, logo, brand, isMobile);
                 callback(null)
             } else {
