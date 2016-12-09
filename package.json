@@ -1,23 +1,24 @@
 {
-    "name": "scrapper",
-    "version": "1.0.0",
-    "private": true,
-    "description": "Web scrapper for grabbing data from the web.",
-    "main": "app.js",
-    "author": "Shane Ramiah",
-    "dependencies": {
-        "x-ray": "latest",
-        "mysql": "latest",
-        "mysql-utilities": "latest",
-        "async": "latest",
-        "request": "latest",
-        "JSONSelect": "latest",
-        "cheerio": "latest",
-        "node-schedule": "latest",
-        "winston": "latest",
-        "form-data": "latest"
-    },
-
-    "license": "UNLICENSED",
-    "repository": "https://github.com/searchodev/shanework"
+  "name": "scrapper",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Web scrapper for grabbing data from the web.",
+  "main": "app.js",
+  "author": "Shane Ramiah",
+  "dependencies": {
+    "JSONSelect": "latest",
+    "async": "latest",
+    "cheerio": "latest",
+    "form-data": "latest",
+    "mongo": "^0.1.0",
+    "mongoskin": "^2.1.0",
+    "mysql": "latest",
+    "mysql-utilities": "latest",
+    "node-schedule": "latest",
+    "request": "latest",
+    "winston": "latest",
+    "x-ray": "latest"
+  },
+  "license": "UNLICENSED",
+  "repository": "https://github.com/searchodev/shanework"
 }

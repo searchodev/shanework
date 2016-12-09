@@ -1,7 +1,7 @@
 {
-    "host": "localhost",
-    "user": "root",
-    "password": "password",
-    "database": "scrapper",
+    "host": "139.59.13.125",
+    "user": "sos",
+    "password": "2secret4sos",
+    "database": "sos",
     "connectionLimit": 10
 }

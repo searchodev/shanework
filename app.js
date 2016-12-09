@@ -10,6 +10,7 @@ var fs = require('fs');
 var path = require('path');
 var xray = require('x-ray');
 var mysql = require('mysql');
+var mongo = require('mongoskin');
 var async = require("async");
 var request = require("request");
 var jselect = require("JSONSelect");
@@ -28,6 +29,8 @@ var args = process.argv.slice(2);
 var sourceName = args[0] || '';
 var verboseParam = args[1] || '';
 var isVerbose = false;
+var isMysql = false;
+var isMongo = true;
 
 if (sourceName === '')
 {
@@ -55,6 +58,7 @@ if (sourceName == "bluestone")
 
 // Getting config from file
 var db = JSON.parse(fs.readFileSync(configDir + '/db.json', 'utf8'));
+var mdb = JSON.parse(fs.readFileSync(configDir + '/mongo.json', 'utf8'));
 var sources = JSON.parse(fs.readFileSync(configDir + '/sources/' + sourceName + '.json', 'utf8'));
 var scrappers = JSON.parse(fs.readFileSync(configDir + '/scrappers.json', 'utf8'));
 
@@ -75,6 +79,12 @@ var connection = mysql.createConnection(db);
 
 var mysql = require('mysql');
 var pool = mysql.createPool(db);
+
+
+//MongoDB connection
+var mongodb = mongo.db("mongodb://"+ mdb.host + ":" + mdb.port + "/" + mdb.database, {native_parser:true});
+mongodb.bind('products');
+
 
 // Creating an instance of the scrapper
 var parser = xray()
@@ -341,18 +351,32 @@ function insert(records, category, logo, brand, isMobile, buildImage) {
             }
         });
         if (values.length > 0) {
-            pool.getConnection(function (err, connection) {
-                var sql = "INSERT INTO products (m_id, m_logo, name, description, category, brand, price, image, url, size, color) VALUES ? ON DUPLICATE KEY UPDATE m_id=m_id, m_logo=m_logo, name=name, description=description, category=category, brand=brand, price=price, image=image, size=size, color=color ";
-                if (typeof connection != 'undefined') {
-                    connection.query(sql, [values], function (err) {
-                        if (err) logger.error("Error connecting to database: ", err);
-                        connection.release();
-                    });
-                }
-                else {
-                  logger.error("Could not connect to database");
-                }
-            });
+            if (isMysql)
+            {
+                pool.getConnection(function (err, connection) {
+                  var sql = "INSERT INTO products (m_id, m_logo, name, description, category, brand, price, image, url, size, color) VALUES ? ON DUPLICATE KEY UPDATE m_id=m_id, m_logo=m_logo, name=name, description=description, category=category, brand=brand, price=price, image=image, size=size, color=color ";
+                  if (typeof connection != 'undefined') {
+                      connection.query(sql, [values], function (err) {
+                          if (err) logger.error("Error connecting to database: ", err);
+                          connection.release();
+                      });
+                  }
+                  else {
+                    logger.error("Could not connect to database");
+                  }
+                });
+            }
+            else (isMongo)
+            {
+              values.forEach(function(element,index){
+                  mongodb.products.insert({name: element[2] ,category:element[4] ,brand: element[5] ,price:element[6] , image:element[7], url:element[8], logo: element[1] }, function(err, result){
+                    if (err) throw err;
+                    if (result) console.log('Added!');
+                  })
+                  //logger.info("{'name':'" + element[2] + "','category':" + element[4] + ",'brand':'" + element[5] + "','price':" + element[6] + ",'image':'" + element[7] + "','url':'" + element[8] + "','logo':'" + element[1] + "'}");
+              });
+            }
+
             logger.info("Inserting: " + values.length + " Records \n");
         }
         else {
